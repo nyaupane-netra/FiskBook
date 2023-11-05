@@ -29,7 +29,6 @@ const Home = () => {
         <>
             <body className='homeback'>
                 <br /><br />
-                <button onClick={logout}>Logout</button>
                 <div className="text-opp">
                     <h1>Our Offerings</h1>
                 </div>
