@@ -1,0 +1,8 @@
+export {default as Home} from './Home'
+export {default as About} from './About'
+export {default as Main} from './Main'
+export {default as Faq} from './Faq'
+export {default as ContactUs} from './ContactUs'
+export {default as MainModal} from './MainModal'
+export {default as NavBar} from './NavBar'
+export {default as Fiskies} from './Fiskies'
