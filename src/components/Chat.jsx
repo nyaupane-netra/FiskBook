@@ -157,9 +157,12 @@ const Chat = () => {
   }
 
   return (
-    <div className="alumni-network-container">
+    <div>
+      <h2 style={{marginLeft:"500px;", marginTop:"30px;"}}>My Chats</h2>
+      <div className="alumni-network-container">
       <div className="alumni-list">
-        <h2>Alumni List</h2>
+        {/* <h2>My Chats</h2> */}
+        
         <div className="card-container">
             {alumniData.map((alumni, index) => (
                 <Card style={{ width: '25rem' }} key={index}>
@@ -226,6 +229,8 @@ const Chat = () => {
         )}
       </div>
     </div>
+    </div>
+    
   );
 };
 

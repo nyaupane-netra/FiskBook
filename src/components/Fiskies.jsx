@@ -97,7 +97,18 @@ const Fiskies = () => {
         ));
       };
 
-    const filter = () => {
+    // const filter = () => {
+    //     if (searchInput && searchInput.length) {
+    //       const filtered = presidents.filter((president) =>
+    //         president.name.toLowerCase().includes(searchInput.toLowerCase())
+    //       );
+    //       return filtered;
+    //     } else {
+    //       return presidents;
+    //     }
+    //   };
+
+      const filter = () => {
         if (searchInput && searchInput.length) {
           const filtered = presidents.filter((president) =>
             president.name.toLowerCase().includes(searchInput.toLowerCase())
@@ -108,8 +119,14 @@ const Fiskies = () => {
         }
       };
     
+      // const handleSearchInputChange = (e) => {
+      //   setSearchInput(e.target.value);
+      // };
+
       const handleSearchInputChange = (e) => {
         setSearchInput(e.target.value);
+        // Update the filteredPresidents state
+        setFilteredPresidents(filter());
       };
     
       const handleSearchButtonClick = () => {

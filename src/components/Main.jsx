@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useMemo } from "react"
 import { useState } from "react"
 import { Row, Col, Card, Button, Container} from "react-bootstrap"
 import { MainModal } from "."
@@ -6,16 +6,24 @@ import { collection, addDoc, getDocs } from "firebase/firestore";
 import {db} from './firebase.js';
 
 const Main = () =>{
-    const [opportunities, setOpportunities] = useState([]);
+    const [todos, setTodos] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
     const fetchPost = async () => {
         await getDocs(collection(db, "opportunities"))
             .then((querySnapshot)=>{              
                 const newData = querySnapshot.docs
                     .map((doc) => ({...doc.data(), id:doc.id }));
-                setOpportunities(newData);                
-                console.log(opportunities, newData);
+                setTodos(newData);                
+                console.log(todos, newData);
             })
     }
+    const filteredAlumni = useMemo(() => {
+        if (searchQuery) {
+          return todos.filter((item) => item.type.toLowerCase().includes(searchQuery.toLowerCase()));
+        } else {
+          return todos;
+        }
+      }, [searchQuery, todos]);
  
 
     useEffect(()=>{
@@ -33,10 +41,16 @@ const Main = () =>{
                     <h1 style={{fontSize: '30px', color: 'black', marginTop:"20px", fontFamily:"Arial, Helvetica, sans-serif;"}}>Announcements and Opportunities</h1>
                     <br/><br/>
                     <MainModal/>
-                    
+                    <input
+                        type="text"
+                        placeholder="Search by opportunity type"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                    <div>
                     {
-                        opportunities?.map((opportunity, i)=> (
-                            <Card style={{ width: '100%', heigth: '30rem', backgroundColor: '#A9B0AC', marginBottom: '1rem' }}>
+                        filteredAlumni?.map((opportunity, i)=> (
+                            <Card style={{ width: '100%', heigth: '30rem', backgroundColor: '#A9B0AC', marginTop: "30px" }}>
                                 <Card.Img variant="top" src={opportunity.image}  style={{width:'150px',left:'40%', position: 'relative', marginTop: '1rem'}}/>
                                 <Card.Body>
                                 <Card.Title>{opportunity.title}</Card.Title>
@@ -49,6 +63,8 @@ const Main = () =>{
                             </Card>
                         ))
                         }
+                    </div>
+                    
                 </Col>
                 <Col xs={3}>
                     
