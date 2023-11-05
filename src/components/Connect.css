@@ -1,8 +1,8 @@
-.todo-container {
+/* .todo-container {
     display: flex;
     justify-content: center;
     align-items: center;    
-}
+} */
  
 .todo {
     width: 70%;
@@ -37,4 +37,25 @@ input {
  
 .todo-content {
     margin-top: 2rem;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows the cards to wrap to the next line if the container is too narrow */
+    gap: 10px; /* Adjust the gap between cards as needed */
+    
+  
+    /* Optionally, you can set a maximum width for the container to control the width of the row */
+    /* max-width: 100%; */
+  }
+  
+  .card {
+    /* Optionally, you can set a specific width for each card if needed */
+    flex: 1; /* This will make each card take an equal amount of space in the container */
+    width: absolute;
+  }
+
+.input-box{
+    border:#334;
+
 }

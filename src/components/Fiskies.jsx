@@ -2,6 +2,8 @@ import '../Fiskies.css'
 import { useState, useEffect} from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
 import { SocialIcon } from 'react-social-icons';
+const APIPath = "https://raw.githubusercontent.com/rejinnepal/fisk-tsu-hackathon/main/our_team_details";
+
 
 
 
@@ -9,43 +11,112 @@ const Fiskies = () => {
 
     // const superheroGrid = document.querySelector('#superhero-grid');
     // const searchBtn = document.querySelector('#btnsearch')
-    const [superHeros, setSuperheroes] = useState([]);
-    const [searchInput, setSearch] = useState('')
 
+    const [presidents, setPresidents] = useState([]);
+    const [searchInput, setSearchInput] = useState('')
+    const [filteredPresidents, setFilteredPresidents] = useState([]);
+
+
+    useEffect(() => {
+        fetch(APIPath)
+          .then((response) => response.json())
+          .then((data) => {
+            setPresidents(data);
+            setFilteredPresidents(data);
+          });
+      }, []);
     
 
-    const getAlldata = () =>{
-        fetch("https://raw.githubusercontent.com/rejinnepal/fisk-tsu-hackathon/main/our_team_details")
-            .then(response => response.json())
-            .then((data) => {
-                setSuperheroes(data);
-            });
-    }
-    useEffect(()=>{
-        getAlldata()
-    }, [])
+    // const getAlldata = () =>{
+    //     fetch("https://raw.githubusercontent.com/rejinnepal/fisk-tsu-hackathon/main/our_team_details")
+    //         .then(response => response.json())
+    //         .then((data) => {
+    //             setSuperheroes(data);
+    //         });
+    // }
+    // useEffect(()=>{
+    //     getAlldata()
+    // }, [])
 
     const handleSearchInput = (e) => {
-        setSearch(e.target.value)
+        setSearchInput(e.target.value)
     }
 
-    function filterByName() {
+    // function filterByName() {
 
-        let filteredArray = [];
-        if (searchInput !== "") {
-            superHeros.forEach((hero) => {
-                if (hero.name.toLowerCase()
-                    .startsWith(searchInput.toLowerCase()))
-                    filteredArray.push(hero);
-                    setSuperheroes(filteredArray)
+    //     let filteredArray = [];
+    //     if (searchInput !== "") {
+    //         superHeros.forEach((hero) => {
+    //             if (hero.name.toLowerCase()
+    //                 .includes(searchInput.toLowerCase()))
+    //                 filteredArray.push(hero);
+    //                 setSuperheroes(filteredArray)
                 
-            });
+    //         });
+    //     } else {
+    //         getAlldata();
+    //     }
+    //     console.log({ searchInput });
+    //     return filteredArray;
+    // }
+
+    // function filterByName() {
+    //     let filteredArray = [];
+      
+    //     if (searchInput !== "") {
+    //       filteredArray = superHeros.filter((hero) =>
+    //         hero.name.toLowerCase().includes(searchInput.toLowerCase())
+    //       );
+    //     } else {
+    //       getAlldata();
+    //     }
+      
+    //     setSuperheroes(filteredArray);
+    //     console.log({ searchInput });
+    //     return filteredArray;
+    //   }
+
+    const updatePresidents = (data) => {
+        return data.map((president) => (
+          <div className="col" key={president.advice}>
+            <div className="card">
+              <img
+                src={president.image}
+                className="card-img-top"
+                height="300"
+                width="300"
+                alt="President Image"
+              />
+              <div className="card-body">
+                <h5 className="card-title">{president.name}</h5>
+                <p className="card-by">{president.by}</p>
+                <p className="card-by">{president.on}</p>
+              </div>
+            </div>
+          </div>
+        ));
+      };
+
+    const filter = () => {
+        if (searchInput && searchInput.length) {
+          const filtered = presidents.filter((president) =>
+            president.name.toLowerCase().includes(searchInput.toLowerCase())
+          );
+          return filtered;
         } else {
-            getAlldata();
+          return presidents;
         }
-        console.log({ searchInput });
-        return filteredArray;
-    }
+      };
+    
+      const handleSearchInputChange = (e) => {
+        setSearchInput(e.target.value);
+      };
+    
+      const handleSearchButtonClick = () => {
+        const filteredList = filter();
+        setFilteredPresidents(filteredList);
+      };
+      
 
 
     return (
@@ -60,8 +131,8 @@ const Fiskies = () => {
                 <div class="row" style={{ marginLeft: '20px', marginBottom: '30px' }}>
                     <div class="col-6">
                         <div class="input-group">
-                            <input id="search-input" type="text" class="form-control" placeholder="Search Your Post" aria-label="" onChange={handleSearchInput} />
-                            <button id="btn-search" type="button" class="btns btn-primary" onClick={filterByName}>Search</button>
+                            <input id="search-input" type="text" class="form-control" placeholder="Search Your Post" aria-label="" value={searchInput} onChange={handleSearchInputChange} />
+                            <button id="btn-search" type="button" class="btns btn-primary" onClick={handleSearchButtonClick}>Search</button>
                         </div>
                     </div>
                 </div>
@@ -69,7 +140,8 @@ const Fiskies = () => {
 
 
                 <Row xs={1} md={2} className="g-4">
-                    {superHeros.map(hero => (
+                {updatePresidents(filteredPresidents)}
+                    {/* {superHeros.map(hero => (
                         <Col style={{ marginLeft: '20px' }}>
                             <Card>
                                 <Card.Img style={{ maxHeight: '300px' }} variant="top" src={hero.image} />
@@ -85,7 +157,7 @@ const Fiskies = () => {
                             </Card>
                         </Col>
 
-                    ))}
+                    ))} */}
                 </Row>
                 
 

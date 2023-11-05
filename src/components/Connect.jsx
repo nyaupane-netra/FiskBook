@@ -1,18 +1,34 @@
-import "../App.css";
-import {db} from './firebase.js';
 import React, { useState, useEffect } from 'react';
 import { collection, addDoc, getDocs } from "firebase/firestore";
+import {db} from './firebase.js';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import AlumniModal from './AlumniModal.jsx';
+import './Connect.css';
  
-const Connect = () => {
-    const [todo, setTodo] = useState("");
+ 
+const Todo = () => {
+    const [name, setName] = useState('');
+    const [image, setImage] = useState('');
+    const [classValue, setClass] = useState('');
+    const [major, setMajor] = useState('');
+    const [company, setCompany] = useState('');
+    const [role, setRole] = useState('');
+    const [bio, setBio] = useState('');
     const [todos, setTodos] = useState([]);
  
-    const addTodo = async (e) => {
+    const addAlumni = async (e) => {
         e.preventDefault();  
        
         try {
             const docRef = await addDoc(collection(db, "todos"), {
-              todo: todo,    
+              name: name,
+              image: image,
+              classValue: classValue,
+              major: major,
+              company: company,
+              role: role,
+              bio: bio
             });
             console.log("Document written with ID: ", docRef.id);
           } catch (e) {
@@ -40,41 +56,97 @@ const Connect = () => {
     return (
         <section className="todo-container">
             <div className="todo">
-                <h1 className="header">
-                    Todo-App
-                </h1>
-   
-                <div>
+                <h3 className="header">
+                    Add an alumnus
+                </h3>
+                <AlumniModal />
+                {/* <div className="input-box" style={{border:"#334"}}>
    
                     <div>
-                        <form onSubmit={addTodo}>
-                            <input
-                                type="text"
-                                placeholder="What do you have to do today?"
-                                onChange={(e)=>setTodo(e.target.value)}
-                            />
-                        
-                        <div className="btn-container">
-                            <button
-                                type="submit"
-                                className="btn"
-                                onClick={addTodo}
-                            >
-                                Submit
-                            </button>
-                        </div>
-                        </form>
-                        
-                        </div>
+                        <input
+                            type="text"
+                            placeholder="Alumni Name"
+                            onChange={(e)=>setName(e.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Alumni Image URL"
+                            onChange={(e)=>setImage(e.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Alumni Class"
+                            onChange={(e)=>setClass(e.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Major"
+                            onChange={(e)=>setMajor(e.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Company"
+                            onChange={(e)=>setCompany(e.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Role"
+                            onChange={(e)=>setRole(e.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Bio"
+                            onChange={(e)=>setBio(e.target.value)}
+                        />
+                    </div>
+
    
-                </div>
+                    <div className="btn-container">
+                        <button
+                            type="submit"
+                            className="btn"
+                            onClick={addAlumni}
+                        >
+                            Submit
+                        </button>
+                    </div>
    
-                <div className="todo-content">
+                </div> */}
+   
+                <div className="card-container">
                     {
                         todos?.map((todo,i)=>(
-                            <p key={i}>
-                                {todo.todo}
-                            </p>
+                            <Card style={{ width: 'absolute' }} className="card">
+                                <div className="card-img-container">
+                                    <Card.Img variant="top" src={todo.image} style={{ width: "100px", height: "100px", borderRadius: "100%", marginTop: "10px"}} />
+                                </div>
+                                <Card.Body>
+                                    <Card.Title>{todo.name}</Card.Title>
+                                    <Card.Text>Class of: {todo.classValue}</Card.Text>
+                                    <Card.Text>Major: {todo.major}</Card.Text>
+                                    <Card.Text>Company: {todo.role}</Card.Text>
+                                    <Card.Text>Role: {todo.role}</Card.Text>
+                                    <Card.Text>Bio: {todo.bio}</Card.Text>
+                                </Card.Body>
+                            </Card>
                         ))
                     }
                 </div>
@@ -83,4 +155,4 @@ const Connect = () => {
     )
 }
  
-export default Connect
+export default Todo

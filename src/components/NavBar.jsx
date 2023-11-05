@@ -14,8 +14,8 @@ const NavBar = () => {
   let activeFiskies = false
   let activeFaq = false
   let activeCont = false
-  let activeLog = false
-  let activeProf = false
+  let activeChat = false
+  let activeConn = false
 
   if (location.pathname === '/') {
     activeHome = true
@@ -35,8 +35,11 @@ const NavBar = () => {
   if (location.pathname === '/contactUs') {
     activeCont = true
   }
-  if (location.pathname === '/profile') {
-    activeProf = true
+  if (location.pathname === '/connect') {
+    activeConn = true
+  }
+  if (location.pathname === '/chat') {
+    activeChat = true
   }
     return (
         <>
@@ -56,8 +59,8 @@ const NavBar = () => {
                     <Link to="/" className={activeHome ? 'active item' : 'item'} >HOME</Link>
                     <Link to="/about" className={activeAbout ? 'active item' : 'item'}>ABOUT US</Link>
                     <Link to="/main" className={activeMain ? 'active item' : 'item'}>OPPORTUNITIES</Link>
-                    <Link to="/connect" className={activeLog ? 'active item' : 'item'}>ALUMNI CONNECT</Link>
-                    <Link to="/chat" className={activeLog ? 'active item' : 'item'}>CHATS</Link>
+                    <Link to="/connect" className={activeConn ? 'active item' : 'item'}>ALUMNI CONNECT</Link>
+                    <Link to="/chat" className={activeChat ? 'active item' : 'item'}>CHATS</Link>
                     <Link to="/fiskies" className={activeFiskies ? 'active item' : 'item'} >FISKITES WRITE</Link>
                     <Link to="/Faq" className={activeFaq ? 'active item' : 'item'}>FAQs</Link>
                     <Link to="/contactUs" className={activeCont ? 'active item' : 'item'}>CONTACT US</Link>
