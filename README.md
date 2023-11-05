@@ -22,7 +22,7 @@ User Stories
 
 Future Implementation
 
-- Allow users to bookmark the post.
+-Allow users to bookmark the post.
 
 -Use machine learning to provide personalized opportunity recommendations based on a user's profile, interests, and past interactions.
 
