@@ -2,12 +2,7 @@ Team Turing
 
 Project Name: FiskBook
 
-Team members
-
-Aashish Panthi
-Netra Nyaupane
-Rejin Nepal
-Rasneet Singh
+Team members: Aashish Panthi, Netra Nyaupane, Rejin Nepal, Rasneet Singh
 
 Tech Stack: HTML, CSS, JavaScript, Bootstrap, React, Firebase. 
 
