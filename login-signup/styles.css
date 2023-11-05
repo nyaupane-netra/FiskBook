@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container,
+.signup-container,
+.forgot-password-container {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+    margin: 10px;
+    transition: transform 0.2s;
+}
+.signup-container{
+    height: 600px;
+}
+.user_forgot{
+    display: inline;
+}
+
+.hidden-fields {
+    display: none;
+}
+
+.if_signup{
+    text-decoration: none;
+}
+
+.login-container:hover,
+.signup-container:hover,
+.forgot-password-container:hover {
+    transform: scale(1.02);
+}
+
+.login-container h1,
+.signup-container h1,
+.forgot-password-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.login-container input,
+.signup-container input,
+.forgot-password-container input{
+    width: 92%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container button,
+.signup-container button,
+.forgot-password-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.signup-radio{
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.login-container button:hover,
+.signup-container button:hover,
+.signup-container button:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.reset-message {
+    color: green;
+    margin-top: 10px;
+}
+
+.forgot-details{
+    width: 92%; 
+    margin: 9px 1px; 
+    padding: 10px;
+}

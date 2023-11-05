@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Sign Up</h1>
+        <form id="signup-form">
+            <input type="text" id="signup-fullname" placeholder="Full Name" required>
+            <input type="text" id="signup-username" placeholder="Username" required>
+            <input type="text" id="signup-email" placeholder="Email" required>
+            <input type="password" id="signup-password" placeholder="Password" required>
+            <p>You are a:</p>
+            <div class="signup-radio">
+                <label for="Alumni">Alumni</label>
+                <input type="radio" id="Alumni" name="category" value="Alumni">
+            </div>
+            <div class="signup-radio">
+                <label for="Student">Student</label>
+                <input type="radio" id="Student" name="category" value="Student">
+            </div>
+            <div id="alumni-fields" class="hidden-fields">
+                <!-- Fields specific to Alumni -->
+                <input type="text" id="alumni-info-company" placeholder="Current Company">
+                <input type="text" id="alumni-info-job" placeholder="Job Position">
+                <input type="text" id="alumni-info-major" placeholder="Undergraduate Major">
+            </div>
+            <div id="student-fields" class="hidden-fields">
+                <!-- Fields specific to Students -->
+                <input type="text" id="student-info-major" placeholder="Major">
+                <input type="text" id="student-info-graduation" placeholder="Graduation Year">
+            </div>
+            <button type="button" id="signup-button">Sign Up</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
