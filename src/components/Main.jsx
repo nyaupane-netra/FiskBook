@@ -36,8 +36,11 @@ const Main = () =>{
                 <Col xs={3} >
                 </Col>
                 <Col  md>
-                    <h1 style={{fontSize: '50px', color: '#FFF'}}>Announcements and Opportunities</h1>
-                    <MainModal onPost={addPost}/>
+                <br/><br/><br/>
+                    <h1 style={{fontSize: '30px', color: 'black', marginTop:"20px", fontFamily:"Arial, Helvetica, sans-serif;"}}>Announcements and Opportunities</h1>
+                    <br/><br/>
+                    <MainModal onPost={addPost} />
+                    
                     {posts.reverse().map(co => (
                         <Card style={{ width: '100%', heigth: '30rem', backgroundColor: '#A9B0AC', marginBottom: '1rem' }}>
                         <Card.Img variant="top" src={co.picture}  style={{width:'150px',left:'40%', position: 'relative', marginTop: '1rem'}}/>

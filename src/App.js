@@ -9,9 +9,10 @@ import { Home,
    NavBar,
    ContactUs,
   } from './components'
+import Connect from './components/Connect';
+import Chat from './components/Chat';
   
 import React from 'react';
-import RegisterAndLogin from './PasswordLoginWithFirebase/RegisterAndLogin.jsx';
 import {
   BrowserRouter as Router,
   Routes,
@@ -19,18 +20,6 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-import SignInWithGoogle from './components/SignInWithGoogle';
-
-function ProtectedRoute({ component: Component, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        auth.currentUser ? <Component {...props} /> : <Redirect to="/signin" />
-      }
-    />
-  );
-}
  
 function App() {
   return (
@@ -56,11 +45,11 @@ function App() {
           <Route path='/contactUs'
           element={<ContactUs/>}
           />
-          <Route path='/logIn'
-          element={<RegisterAndLogin/>}
+          <Route path='/connect'
+          element={<Connect/>}
           />
-          <Route path='/forgotPassword'
-          element={<ForgotPassword/>}
+          <Route path='/chat'
+          element={<Chat/>}
           />
         </Routes>
       </Router>      

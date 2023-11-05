@@ -41,7 +41,7 @@ const ContactUs = () => {
                         <ul class="contact-list" >
                             <li class="list-item" style={{ marginTop: '-50px',marginBottom: '-50px'}}><i class="fa fa-map-marker fa-2x"><span class="contact-text place">FiskBook</span></i></li>
                             <li class="list-item" style={{marginBottom: '-50px'}}><i class="fa fa-map-marker fa-2x"><span class="contact-text place">Nashville, TN</span></i></li>
-                            <li class="list-item" style={{marginBottom: '-50px'}}><i class="fa fa-envelope fa-2x"><span class="contact-text gmail"><a href="mailto:#" title="Send me an email">helpdesk@fiskbook.com</a></span></i></li>
+                            <li class="list-item" style={{marginBottom: '-50px'}}><i class="fa fa-envelope fa-2x"><span class="contact-text gmail"><a href="mailto:#" title="Send me an email">rejinnepal815@gmail.com</a></span></i></li>
                         </ul>
 
 
