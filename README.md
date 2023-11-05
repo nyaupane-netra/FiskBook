@@ -20,3 +20,10 @@ User Stories
 
 -Users can start conversations with the alumni.
 
+Future Implementation
+
+- Allow users to bookmark the post.
+
+-Use machine learning to provide personalized opportunity recommendations based on a user's profile, interests, and past interactions.
+
+-Improve in-app messaging feature by adding real-time chat, file sharing, and group chat capabilities to facilitate communication among users.
