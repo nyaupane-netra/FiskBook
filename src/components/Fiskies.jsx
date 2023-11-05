@@ -25,7 +25,7 @@ const Fiskies = () => {
             setFilteredPresidents(data);
           });
       }, []);
-    
+
 
     // const getAlldata = () =>{
     //     fetch("https://raw.githubusercontent.com/rejinnepal/fisk-tsu-hackathon/main/our_team_details")
