@@ -12,9 +12,7 @@ const Connect = () => {
        
         try {
             const docRef = await addDoc(collection(db, "todos"), {
-              name: "Netra Nyaupane",
-              classof: "2001",
-              bio: "I am honest."    
+              todo: todo,    
             });
             console.log("Document written with ID: ", docRef.id);
           } catch (e) {
@@ -22,21 +20,21 @@ const Connect = () => {
           }
     }
  
-    // const fetchPost = async () => {
+    const fetchPost = async () => {
        
-    //     await getDocs(collection(db, "todos"))
-    //         .then((querySnapshot)=>{              
-    //             const newData = querySnapshot.docs
-    //                 .map((doc) => ({...doc.data(), id:doc.id }));
-    //             setTodos(newData);                
-    //             console.log(todos, newData);
-    //         })
+        await getDocs(collection(db, "todos"))
+            .then((querySnapshot)=>{              
+                const newData = querySnapshot.docs
+                    .map((doc) => ({...doc.data(), id:doc.id }));
+                setTodos(newData);                
+                console.log(todos, newData);
+            })
        
-    // }
+    }
    
-    // useEffect(()=>{
-    //     fetchPost();
-    // }, [])
+    useEffect(()=>{
+        fetchPost();
+    }, [])
  
  
     return (
