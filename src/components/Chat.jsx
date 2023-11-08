@@ -74,7 +74,7 @@ import Card from 'react-bootstrap/Card';
 
 // export default Chat;
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Chat.css"; // Import your CSS file for styling
 
 const Chat = () => {
@@ -115,6 +115,8 @@ const Chat = () => {
   const [selectedAlumni, setSelectedAlumni] = useState(null);
   const messageInputRef = useRef(null);
   const [newMessage, setNewMessage] = useState("");
+  const chatMessagesRef = useRef(null);
+
 
   // Use an object to store chat messages for each alumni
   const [alumniChatMessages, setAlumniChatMessages] = useState({});
@@ -148,6 +150,9 @@ const Chat = () => {
 
       setNewMessage("");
       messageInputRef.current.focus();
+      
+      // Scroll to the bottom of the chat messages container
+      chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight - chatMessagesRef.current.clientHeight;
     }
   };
 
@@ -156,9 +161,17 @@ const Chat = () => {
     setShowDetails(false);
   }
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && newMessage.trim() !== "") {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
+  
+
   return (
     <div>
-      <h2 style={{marginLeft:"500px;", marginTop:"30px;"}}>My Chats</h2>
+      <h2 style={{marginLeft:"600px", marginTop:"15px"}}>My Chats</h2>
       <div className="alumni-network-container">
       <div className="alumni-list">
         {/* <h2>My Chats</h2> */}
@@ -207,7 +220,7 @@ const Chat = () => {
         {selectedAlumni && !showDetails && (
           <div className="chat-section">
             <h2>{selectedAlumni.name}</h2>
-            <div className="chat-messages">
+            <div className="chat-messages" ref={chatMessagesRef}>
               {alumniChatMessages[selectedAlumni.id].map((message, index) => (
                 <div key={index} className={`message ${message.sender}`}>
                   {message.text}
@@ -222,6 +235,7 @@ const Chat = () => {
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
                 ref={messageInputRef}
+                onKeyPress={handleKeyPress}
               />
               <button onClick={handleSendMessage}>Send</button>
             </div>
